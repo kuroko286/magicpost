@@ -1,1 +1,1 @@
-# Magic Post Backend (Spring Boot 3)
+# Magic Post Backend (Spring Boot 6)
