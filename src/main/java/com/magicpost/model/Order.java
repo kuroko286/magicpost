@@ -14,6 +14,7 @@ import com.magicpost.utils.constant.OrderType;
 @Data
 @Entity
 @NoArgsConstructor
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

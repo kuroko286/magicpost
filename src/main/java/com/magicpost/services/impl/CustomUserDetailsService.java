@@ -3,12 +3,14 @@ package com.magicpost.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.magicpost.components.CustomUserDetails;
 import com.magicpost.exception.ResourseNotFoundException;
 import com.magicpost.model.User;
 import com.magicpost.repository.UserRepository;
 
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired

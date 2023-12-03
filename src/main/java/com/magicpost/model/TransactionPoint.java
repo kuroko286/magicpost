@@ -20,6 +20,9 @@ public class TransactionPoint extends Point {
     private long id; // maybe generate custom id, like prefix with TSP_
     private String name;
     private String address;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gathering_point_id", referencedColumnName = "id")

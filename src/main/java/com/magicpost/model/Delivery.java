@@ -23,5 +23,8 @@ public class Delivery {
     private boolean isDelivered;
     @CreationTimestamp
     private LocalDateTime deliveryAt;
-    private Point pointFrom;
+    private LocalDateTime deliveredAt;
+    private String pointFrom;
+    private String pointTo;
+
 }

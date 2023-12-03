@@ -45,5 +45,5 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "gathering_point_id", referencedColumnName = "id")
     @JsonIgnore
-    private TransactionPoint gatheringPoint;
+    private GatheringPoint gatheringPoint;
 }
