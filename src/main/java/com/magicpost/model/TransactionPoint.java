@@ -1,43 +1,29 @@
 package com.magicpost.model;
 
-import com.magicpost.model.dto.EmployeeDTO;
-import com.magicpost.model.dto.TransactionPointDTO;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TransactionPoint {
+public class TransactionPoint extends Point {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long id; // maybe generate custom id, like prefix with TSP_
     private String name;
     private String address;
-    @OneToOne
-    private Leader leader;
-    @OneToMany
-    private List<Employee> employee;
-    @ManyToOne
-    private ConsolidationPoint consolidationPoint;
 
-    public TransactionPointDTO transactionPointDTO() {
-        List<EmployeeDTO> employeeDTOS = new ArrayList<>();
-        for (Employee e : this.employee) {
-            employeeDTOS.add(e.employeeDTO());
-        }
-        return new TransactionPointDTO(this.id, this.name, this.address, this.leader.leaderDTO(), employeeDTOS,
-                this.consolidationPoint.noEmployeeConsolidationPointDTO());
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gathering_point_id", referencedColumnName = "id")
+    @JsonIgnore
+    private GatheringPoint gatheringPoint;
 
-    public TransactionPointDTO noEmployeeTransactionPointDTO() {
-        return new TransactionPointDTO(this.id, this.name, this.address, this.leader.leaderDTO(),
-                this.consolidationPoint.noEmployeeConsolidationPointDTO());
-    }
 }
